@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     # Run on all PRs
 
@@ -20,9 +20,8 @@ jobs:
           - 'high'
           - 'low'
         php:
-          - '7.3'
-          - '7.4'
           - '8.0'
+          - '8.1-dev'
 
     steps:
       - name: Check out code
