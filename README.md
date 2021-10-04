@@ -35,7 +35,7 @@ Example:
 try {
     // ...
 } catch (Throwable $e) {
-    $logger->error('Caught exception in worker with input {input}, [
+    $logger->error('Caught exception in worker with input {input}', [
         'input' => $input,
         'exception' => $e,
     ]);
