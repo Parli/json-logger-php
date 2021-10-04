@@ -8,7 +8,7 @@ use Psr\Log\{LoggerInterface, LogLevel};
 use UnexpectedValueException;
 
 /**
- * @covers Parli\Tools\Loggers\JsonLogger
+ * @covers Parli\JsonLogger\JsonLogger
  */
 class JsonLoggerTest extends \PHPUnit\Framework\TestCase
 {
