@@ -23,13 +23,9 @@ class JsonLogger extends AbstractLogger
     {
     }
 
-    /**
-     * @param array{exception?: Throwable} & array<string, mixed> $context
-     */
     public function log($level, $message, array $context = []): void
     {
         if (!is_string($message)) {
-            // assert object with __toString()?
             $message = (string) $message;
         }
         // Keys in the json dict are based around Datadog's reserved
