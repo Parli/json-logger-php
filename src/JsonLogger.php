@@ -6,6 +6,8 @@ namespace Parli\JsonLogger;
 
 use Psr\Log\{AbstractLogger, LoggerInterface};
 use Throwable;
+use Exception;
+use string;
 
 use function array_key_exists;
 use function is_array;
@@ -45,13 +47,13 @@ class JsonLogger extends AbstractLogger
             } else if ($exception instanceof string) {
               $exception_message = $exception;
             } else {
-              throw new Exception("Unknown exception type: $exception");
+              throw new Exception("Exception $exception has unknown type");
             }
 
             // Use datadog format rules
             // https://docs.datadoghq.com/logs/log_collection/?tab=host#attributes-and-tags
             $data['error'] = [
-                'message' => $m,
+                'message' => $exception_message,
                 'kind' => get_class($exception),
                 // The built in casting deals with rendering $previous
                 'stack' => (string)$exception,
