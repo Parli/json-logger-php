@@ -41,10 +41,13 @@ class JsonLogger extends AbstractLogger
         if (array_key_exists('exception', $context)) {
             $exception = $context['exception'];
             $exception_message = "";
+            $exception_kind = ""
             if ($exception instanceof Throwable) {
                 $exception_message = $exception->getMessage();
+                $exception_kind = "Exception";
             } elseif (is_string($exception)) {
                 $exception_message = $exception;
+                $exception_kind = "string";
             } else {
                 throw new Exception("Exception $exception has unknown type");
             }
@@ -53,7 +56,7 @@ class JsonLogger extends AbstractLogger
             // https://docs.datadoghq.com/logs/log_collection/?tab=host#attributes-and-tags
             $data['error'] = [
                 'message' => $exception_message,
-                'kind' => get_class($exception),
+                'kind' => $exception_kind,
                 // The built in casting deals with rendering $previous
                 'stack' => (string)$exception,
             ];
