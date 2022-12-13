@@ -43,7 +43,7 @@ class JsonLogger extends AbstractLogger
             $exception_message = "";
             if ($exception instanceof Throwable) {
                 $exception_message = $exception->getMessage();
-            } else if ($exception instanceof string) {
+            } elseif ($exception instanceof string) {
                 $exception_message = $exception;
             } else {
                 throw new Exception("Exception $exception has unknown type");
