@@ -39,11 +39,19 @@ class JsonLogger extends AbstractLogger
 
         if (array_key_exists('exception', $context)) {
             $exception = $context['exception'];
-            assert($exception instanceof Throwable);
+            $exception_message = "";
+            if ($exception instanceof Throwable) {
+              $exception_message = $exception->getMessage();
+            } else if ($exception instanceof string) {
+              $exception_message = $exception;
+            } else {
+              throw new Exception("Unknown exception type: $exception");
+            }
+
             // Use datadog format rules
             // https://docs.datadoghq.com/logs/log_collection/?tab=host#attributes-and-tags
             $data['error'] = [
-                'message' => $exception->getMessage(),
+                'message' => $m,
                 'kind' => get_class($exception),
                 // The built in casting deals with rendering $previous
                 'stack' => (string)$exception,
