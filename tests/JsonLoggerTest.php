@@ -48,7 +48,7 @@ class JsonLoggerTest extends \PHPUnit\Framework\TestCase
         // The exception should provide additional data simply by being present
         $errInfo = $data['error'];
         $this->assertSame('No good', $errInfo['message'], 'error.message');
-        $this->assertSame('Exception', $errInfo['kind'], 'error.kind');
+        $this->assertSame('UnexpectedValueException', $errInfo['kind'], 'error.kind');
         $this->assertSame((string) $e, $errInfo['stack'], 'error.stack');
     }
 

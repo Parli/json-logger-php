@@ -44,7 +44,7 @@ class JsonLogger extends AbstractLogger
             $exception_kind = "";
             if ($exception instanceof Throwable) {
                 $exception_message = $exception->getMessage();
-                $exception_kind = "Exception";
+                $exception_kind = get_class($exception);
             } elseif (is_string($exception)) {
                 $exception_message = $exception;
                 $exception_kind = "string";
